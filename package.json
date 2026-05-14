@@ -7,7 +7,7 @@
     "start": "node server.js",
     "build": "echo static"
   },
-  "dependencies": {
+  "devDependencies": {
     "express": "^4.18.2"
   },
   "engines": {
