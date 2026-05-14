@@ -45,8 +45,6 @@ body {
   max-width: 440px;
 }
 
-/* ── Header ─────────────────────────────────────────────────────────────── */
-
 header {
   width: 100%;
   display: flex;
@@ -90,8 +88,6 @@ h1 {
   color: #fff;
 }
 
-/* ── Message ────────────────────────────────────────────────────────────── */
-
 #message {
   font-size: 1.15rem;
   font-weight: 700;
@@ -104,8 +100,6 @@ h1 {
 #message.hidden { display: none; }
 #message.info    { background: var(--surface); color: var(--indigo); }
 #message.success { background: #14532d; color: #4ade80; }
-
-/* ── Grid ───────────────────────────────────────────────────────────────── */
 
 #grid {
   display: grid;
@@ -153,7 +147,6 @@ h1 {
   display: block;
 }
 
-/* Won state: pulse each cell */
 #grid.won .cell[data-value] {
   animation: pulse 0.5s ease-in-out;
 }
@@ -163,8 +156,6 @@ h1 {
   40%  { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
-
-/* ── Constraint Markers ─────────────────────────────────────────────────── */
 
 .cmarker {
   display: flex;
@@ -181,8 +172,6 @@ h1 {
 .cmarker.error {
   color: var(--err-bdr);
 }
-
-/* ── Controls ───────────────────────────────────────────────────────────── */
 
 .controls {
   display: flex;
@@ -205,8 +194,6 @@ h1 {
 
 #new-game:hover { background: var(--btn-hov); }
 #new-game:active { transform: scale(0.95); }
-
-/* ── Legend ─────────────────────────────────────────────────────────────── */
 
 .legend {
   display: flex;

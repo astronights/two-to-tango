@@ -8,8 +8,6 @@ const DIFFICULTIES = {
   hard:   { revealed: 4,  numConstraints: 10 },
 };
 
-// ── Utilities ──────────────────────────────────────────────────────────────
-
 function shuffle(arr) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -19,10 +17,7 @@ function shuffle(arr) {
   return a;
 }
 
-// ── Grid Rules ─────────────────────────────────────────────────────────────
-
 function isValidCell(grid, r, c, val, size) {
-  // Count: at most size/2 of same value per row/col
   let rc = 0, cc = 0;
   for (let i = 0; i < size; i++) {
     if (grid[r][i] === val) rc++;
@@ -30,12 +25,10 @@ function isValidCell(grid, r, c, val, size) {
   }
   if (rc >= size / 2 || cc >= size / 2) return false;
 
-  // No 3 consecutive in row (check windows touching c)
   for (let s = Math.max(0, c - 2); s <= Math.min(size - 3, c); s++) {
     const v = [0, 1, 2].map(d => s + d === c ? val : grid[r][s + d]);
     if (v[0] !== EMPTY && v[0] === v[1] && v[1] === v[2]) return false;
   }
-  // No 3 consecutive in col
   for (let s = Math.max(0, r - 2); s <= Math.min(size - 3, r); s++) {
     const v = [0, 1, 2].map(d => s + d === r ? val : grid[s + d][c]);
     if (v[0] !== EMPTY && v[0] === v[1] && v[1] === v[2]) return false;
@@ -58,8 +51,6 @@ function isValidWithConstraints(grid, r, c, val, cmap, size) {
   }
   return true;
 }
-
-// ── Puzzle Generation ──────────────────────────────────────────────────────
 
 function generateSolution(size) {
   const grid = Array.from({ length: size }, () => Array(size).fill(EMPTY));
@@ -119,7 +110,6 @@ function generatePuzzle(difficulty) {
   for (let attempt = 0; attempt < 20; attempt++) {
     const solution = generateSolution(size);
 
-    // Candidate adjacency pairs
     const pairs = shuffle([
       ...Array.from({ length: size }, (_, r) =>
         Array.from({ length: size - 1 }, (_, c) => [r, c, r, c + 1])
@@ -134,7 +124,6 @@ function generatePuzzle(difficulty) {
       type: solution[r1][c1] === solution[r2][c2] ? '=' : 'x',
     }));
 
-    // Greedy removal: start full, remove cells while keeping uniqueness
     const clueGrid = solution.map(row => [...row]);
     const cells = shuffle(
       Array.from({ length: size }, (_, r) =>
@@ -164,7 +153,6 @@ function generatePuzzle(difficulty) {
     }
   }
 
-  // Fallback: show more clues
   const solution = generateSolution(size);
   return {
     size, solution, constraints: [],
@@ -172,8 +160,6 @@ function generatePuzzle(difficulty) {
     clues: solution.map(row => row.map(() => true)),
   };
 }
-
-// ── Game State ─────────────────────────────────────────────────────────────
 
 const state = {
   size: SIZE,
@@ -190,7 +176,6 @@ const state = {
 
 function newGame() {
   showMessage('Generating…', false);
-  // Defer so the message renders before the CPU-heavy generation
   setTimeout(() => {
     const puzzle = generatePuzzle(state.difficulty);
     state.size = puzzle.size;
@@ -219,7 +204,7 @@ function validateAndRender() {
   render();
   if (isComplete() && state.errors.size === 0 && state.constraintErrors.size === 0) {
     state.won = true;
-    render(); // re-render with won state
+    render();
     setTimeout(() => showMessage('Puzzle Solved!', true), 80);
   }
 }
@@ -276,8 +261,6 @@ function findErrors() {
   state.constraintErrors = cerrs;
 }
 
-// ── SVG Icons ──────────────────────────────────────────────────────────────
-
 const SUN_SVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Sun">
   <circle cx="12" cy="12" r="4.5" fill="#FBBF24"/>
   <g stroke="#FBBF24" stroke-width="2" stroke-linecap="round">
@@ -296,8 +279,6 @@ const MOON_SVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" ar
   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#A78BFA"/>
 </svg>`;
 
-// ── Render ─────────────────────────────────────────────────────────────────
-
 function cellSize() {
   const avail = Math.min(window.innerWidth - 40, 380);
   const gapRatio = 0.28;
@@ -313,7 +294,6 @@ function render() {
   const cs = cellSize();
   const gs = Math.max(14, Math.floor(cs * 0.28));
 
-  // Build CSS grid template: cell gap cell gap … cell
   const tpl = Array.from({ length: size * 2 - 1 }, (_, i) =>
     i % 2 === 0 ? `${cs}px` : `${gs}px`
   ).join(' ');
@@ -321,7 +301,6 @@ function render() {
   container.style.gridTemplateRows = tpl;
   container.classList.toggle('won', won);
 
-  // Cells
   for (let r = 0; r < size; r++) {
     for (let c = 0; c < size; c++) {
       const cell = document.createElement('div');
@@ -341,7 +320,6 @@ function render() {
     }
   }
 
-  // Constraint markers
   constraints.forEach(({ r1, c1, r2, c2, type }, i) => {
     const slot = document.createElement('div');
     const horiz = r1 === r2;
@@ -354,8 +332,6 @@ function render() {
   });
 }
 
-// ── Messages ───────────────────────────────────────────────────────────────
-
 function showMessage(text, success) {
   const el = document.getElementById('message');
   el.textContent = text;
@@ -366,8 +342,6 @@ function hideMessage() {
   const el = document.getElementById('message');
   el.className = 'hidden';
 }
-
-// ── Init ───────────────────────────────────────────────────────────────────
 
 function init() {
   document.getElementById('new-game').addEventListener('click', newGame);
