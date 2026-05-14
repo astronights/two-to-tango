@@ -280,10 +280,10 @@ const MOON_SVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" ar
 </svg>`;
 
 function cellSize() {
-  const avail = Math.min(window.innerWidth - 40, 380);
-  const gapRatio = 0.28;
+  const avail = Math.min(window.innerWidth - 16, 480);
+  const gapRatio = 0.22;
   const sz = SIZE;
-  return Math.min(64, Math.floor(avail / (sz + (sz - 1) * gapRatio)));
+  return Math.min(76, Math.floor(avail / (sz + (sz - 1) * gapRatio)));
 }
 
 function render() {
@@ -292,7 +292,7 @@ function render() {
   container.innerHTML = '';
 
   const cs = cellSize();
-  const gs = Math.max(14, Math.floor(cs * 0.28));
+  const gs = Math.max(12, Math.floor(cs * 0.22));
 
   const tpl = Array.from({ length: size * 2 - 1 }, (_, i) =>
     i % 2 === 0 ? `${cs}px` : `${gs}px`
