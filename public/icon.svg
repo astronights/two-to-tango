@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <rect width="512" height="512" rx="110" fill="#1c1c44"/>
+  <!-- Sun (left) -->
   <circle cx="160" cy="256" r="52" fill="#FBBF24"/>
   <g stroke="#FBBF24" stroke-width="16" stroke-linecap="round">
     <line x1="160" y1="162" x2="160" y2="186"/>
@@ -11,6 +12,8 @@
     <line x1="93.4" y1="322.6" x2="110.4" y2="305.6"/>
     <line x1="209.6" y1="206.4" x2="226.6" y2="189.4"/>
   </g>
+  <!-- Divider -->
   <line x1="256" y1="160" x2="256" y2="352" stroke="#3730a3" stroke-width="4"/>
+  <!-- Moon (right) -->
   <path d="M384 174 A82 82 0 1 0 384 338 A58 58 0 1 1 384 174 Z" fill="#A78BFA"/>
 </svg>

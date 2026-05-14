@@ -1,4 +1,4 @@
-/* ── Light mode (default) ────────────────────────────────────── */
+/* ── Light mode (default) ────────────────────────────────────────────────── */
 :root {
   --bg:          #f7f8ff;
   --surface:     #eef0fb;
@@ -20,9 +20,10 @@
   --ok-bg:       #f0fdf4;
   --ok-fg:       #15803d;
   --timer-color: #312e81;
+  --theme-meta:  #f7f8ff;
 }
 
-/* ── Dark mode ───────────────────────────────────────── */
+/* ── Dark mode ───────────────────────────────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg:          #0d0d1f;
@@ -45,6 +46,7 @@
     --ok-bg:       #14532d;
     --ok-fg:       #86efac;
     --timer-color: #c7d2fe;
+    --theme-meta:  #0d0d1f;
   }
 }
 
@@ -69,9 +71,10 @@
   --ok-bg:       #14532d;
   --ok-fg:       #86efac;
   --timer-color: #c7d2fe;
+  --theme-meta:  #0d0d1f;
 }
 
-/* ── Base ───────────────────────────────────────────── */
+/* ── Base ────────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { color-scheme: light dark; }
@@ -99,7 +102,7 @@ body {
   max-width: 480px;
 }
 
-/* ── Header ─────────────────────────────────────────── */
+/* ── Header ─────────────────────────────────────────────────────────────── */
 header {
   width: 100%;
   display: flex;
@@ -145,7 +148,7 @@ h1 {
 #theme-btn:hover { border-color: var(--border-hov); }
 #theme-btn svg { width: 17px; height: 17px; }
 
-/* ── Difficulty toggle ──────────────────────────────── */
+/* ── Difficulty toggle ───────────────────────────────────────────────────── */
 .difficulty-toggle {
   display: flex;
   background: var(--surface);
@@ -174,7 +177,7 @@ h1 {
   color: #fff;
 }
 
-/* ── Timer ───────────────────────────────────────────── */
+/* ── Timer ───────────────────────────────────────────────────────────────── */
 #timer {
   font-size: 2rem;
   font-weight: 300;
@@ -185,7 +188,7 @@ h1 {
   transition: color 0.2s;
 }
 
-/* ── Message ────────────────────────────────────────── */
+/* ── Message ─────────────────────────────────────────────────────────────── */
 #message {
   font-size: 1.1rem;
   font-weight: 600;
@@ -199,7 +202,7 @@ h1 {
 #message.info    { background: var(--info-bg); color: var(--info-fg); }
 #message.success { background: var(--ok-bg);   color: var(--ok-fg); }
 
-/* ── Grid ───────────────────────────────────────────── */
+/* ── Grid ────────────────────────────────────────────────────────────────── */
 #grid { display: grid; }
 
 .cell {
@@ -247,7 +250,7 @@ h1 {
   100% { transform: scale(1); }
 }
 
-/* ── Constraint markers ──────────────────────────────── */
+/* ── Constraint markers ──────────────────────────────────────────────────── */
 .cmarker {
   display: flex;
   align-items: center;
@@ -262,7 +265,7 @@ h1 {
 
 .cmarker.error { color: var(--err-bdr); }
 
-/* ── Controls ────────────────────────────────────────── */
+/* ── Controls ────────────────────────────────────────────────────────────── */
 .controls { display: flex; gap: 12px; }
 
 #new-game {
@@ -282,7 +285,7 @@ h1 {
 #new-game:hover  { background: var(--btn-hov); }
 #new-game:active { transform: scale(0.95); }
 
-/* ── Legend ──────────────────────────────────────────── */
+/* ── Legend ──────────────────────────────────────────────────────────────── */
 .legend {
   display: flex;
   align-items: center;
@@ -300,4 +303,52 @@ h1 {
 .constraint-legend {
   font-weight: 700;
   color: var(--indigo-soft);
+}
+
+/* ── Solve History ───────────────────────────────────────────────────────── */
+.history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.history.hidden { display: none; }
+
+.history-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.55;
+}
+
+.history-times {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.history-item {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.diff-tag {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  opacity: 0.55;
 }
