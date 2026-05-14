@@ -1,40 +1,93 @@
+/* ── Light mode (default) ────────────────────────────────────── */
 :root {
-  --bg:        #0c0c1e;
-  --surface:   #16163a;
-  --cell:      #1c1c44;
-  --cell-hov:  #242460;
-  --clue:      #25256a;
-  --border:    #3730a3;
-  --border-hov:#6366f1;
-  --err-bg:    #3b0a0a;
-  --err-bdr:   #dc2626;
-  --sun:       #FBBF24;
-  --moon:      #A78BFA;
-  --indigo:    #818cf8;
-  --text:      #e0e7ff;
-  --muted:     #6366f1;
-  --btn:       #4f46e5;
-  --btn-hov:   #4338ca;
-  --won-glow:  #22c55e;
+  --bg:          #f7f8ff;
+  --surface:     #eef0fb;
+  --cell:        #ffffff;
+  --cell-hov:    #f3f4ff;
+  --clue:        #e8eaff;
+  --border:      #d4d8f8;
+  --border-hov:  #818cf8;
+  --err-bg:      #fff5f5;
+  --err-bdr:     #fca5a5;
+  --indigo:      #4f46e5;
+  --indigo-soft: #6366f1;
+  --text:        #1e1b4b;
+  --text-muted:  #6366f1;
+  --btn:         #4f46e5;
+  --btn-hov:     #4338ca;
+  --info-bg:     #eef0fb;
+  --info-fg:     #4338ca;
+  --ok-bg:       #f0fdf4;
+  --ok-fg:       #15803d;
+  --timer-color: #312e81;
 }
 
+/* ── Dark mode ───────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:          #0d0d1f;
+    --surface:     #16163a;
+    --cell:        #1c1c4a;
+    --cell-hov:    #242460;
+    --clue:        #24246a;
+    --border:      #3730a3;
+    --border-hov:  #6366f1;
+    --err-bg:      rgba(252,165,165,0.07);
+    --err-bdr:     #fca5a5;
+    --indigo:      #818cf8;
+    --indigo-soft: #a5b4fc;
+    --text:        #e8eeff;
+    --text-muted:  #818cf8;
+    --btn:         #4f46e5;
+    --btn-hov:     #4338ca;
+    --info-bg:     #16163a;
+    --info-fg:     #a5b4fc;
+    --ok-bg:       #14532d;
+    --ok-fg:       #86efac;
+    --timer-color: #c7d2fe;
+  }
+}
+
+[data-theme="dark"] {
+  --bg:          #0d0d1f;
+  --surface:     #16163a;
+  --cell:        #1c1c4a;
+  --cell-hov:    #242460;
+  --clue:        #24246a;
+  --border:      #3730a3;
+  --border-hov:  #6366f1;
+  --err-bg:      rgba(252,165,165,0.07);
+  --err-bdr:     #fca5a5;
+  --indigo:      #818cf8;
+  --indigo-soft: #a5b4fc;
+  --text:        #e8eeff;
+  --text-muted:  #818cf8;
+  --btn:         #4f46e5;
+  --btn-hov:     #4338ca;
+  --info-bg:     #16163a;
+  --info-fg:     #a5b4fc;
+  --ok-bg:       #14532d;
+  --ok-fg:       #86efac;
+  --timer-color: #c7d2fe;
+}
+
+/* ── Base ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body {
-  height: 100%;
+html { color-scheme: light dark; }
+
+body {
   background: var(--bg);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
-}
-
-body {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 12px 8px;
   padding-bottom: max(12px, env(safe-area-inset-bottom));
   min-height: 100dvh;
+  transition: background 0.2s, color 0.2s;
 }
 
 #app {
@@ -46,6 +99,7 @@ body {
   max-width: 480px;
 }
 
+/* ── Header ─────────────────────────────────────────── */
 header {
   width: 100%;
   display: flex;
@@ -54,20 +108,51 @@ header {
   gap: 12px;
 }
 
+.header-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
 h1 {
   font-size: 1.8rem;
   font-weight: 900;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #c7d2fe;
+  color: var(--indigo);
 }
 
+#theme-btn {
+  position: absolute;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--indigo);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: border-color 0.15s, background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#theme-btn:hover { border-color: var(--border-hov); }
+#theme-btn svg { width: 17px; height: 17px; }
+
+/* ── Difficulty toggle ──────────────────────────────── */
 .difficulty-toggle {
   display: flex;
   background: var(--surface);
   border-radius: 10px;
   padding: 3px;
   gap: 2px;
+  transition: background 0.2s;
 }
 
 .diff-btn {
@@ -75,7 +160,7 @@ h1 {
   border: none;
   border-radius: 8px;
   background: transparent;
-  color: #6366f1;
+  color: var(--text-muted);
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 700;
@@ -89,27 +174,38 @@ h1 {
   color: #fff;
 }
 
+/* ── Timer ───────────────────────────────────────────── */
+#timer {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--timer-color);
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  transition: color 0.2s;
+}
+
+/* ── Message ────────────────────────────────────────── */
 #message {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 600;
   text-align: center;
-  padding: 10px 28px;
+  padding: 9px 24px;
   border-radius: 10px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
 }
 
-#message.hidden { display: none; }
-#message.info    { background: var(--surface); color: var(--indigo); }
-#message.success { background: #14532d; color: #4ade80; }
+#message.hidden  { display: none; }
+#message.info    { background: var(--info-bg); color: var(--info-fg); }
+#message.success { background: var(--ok-bg);   color: var(--ok-fg); }
 
-#grid {
-  display: grid;
-}
+/* ── Grid ───────────────────────────────────────────── */
+#grid { display: grid; }
 
 .cell {
   background: var(--cell);
-  border: 2px solid var(--border);
-  border-radius: 9px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -120,9 +216,7 @@ h1 {
   touch-action: manipulation;
 }
 
-.cell:active:not(.clue) {
-  transform: scale(0.92);
-}
+.cell:active:not(.clue) { transform: scale(0.91); }
 
 @media (hover: hover) {
   .cell:hover:not(.clue) {
@@ -133,8 +227,9 @@ h1 {
 
 .cell.clue {
   background: var(--clue);
-  border-color: #4338ca;
+  border-color: var(--indigo-soft);
   cursor: default;
+  opacity: 0.9;
 }
 
 .cell.error {
@@ -142,42 +237,33 @@ h1 {
   border-color: var(--err-bdr);
 }
 
-.cell svg {
-  width: 58%;
-  height: 58%;
-  display: block;
-}
+.cell svg { width: 58%; height: 58%; display: block; }
 
-#grid.won .cell[data-value] {
-  animation: pulse 0.5s ease-in-out;
-}
+#grid.won .cell[data-value] { animation: pop 0.45s ease-in-out; }
 
-@keyframes pulse {
+@keyframes pop {
   0%   { transform: scale(1); }
-  40%  { transform: scale(1.08); }
+  40%  { transform: scale(1.1); }
   100% { transform: scale(1); }
 }
 
+/* ── Constraint markers ──────────────────────────────── */
 .cmarker {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.72rem;
-  font-weight: 900;
-  color: var(--indigo);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--indigo-soft);
   pointer-events: none;
   z-index: 2;
   line-height: 1;
 }
 
-.cmarker.error {
-  color: var(--err-bdr);
-}
+.cmarker.error { color: var(--err-bdr); }
 
-.controls {
-  display: flex;
-  gap: 12px;
-}
+/* ── Controls ────────────────────────────────────────── */
+.controls { display: flex; gap: 12px; }
 
 #new-game {
   padding: 11px 36px;
@@ -193,32 +279,25 @@ h1 {
   -webkit-tap-highlight-color: transparent;
 }
 
-#new-game:hover { background: var(--btn-hov); }
+#new-game:hover  { background: var(--btn-hov); }
 #new-game:active { transform: scale(0.95); }
 
+/* ── Legend ──────────────────────────────────────────── */
 .legend {
   display: flex;
   align-items: center;
   gap: 16px;
-  font-size: 0.78rem;
-  color: #6b7280;
+  font-size: 0.75rem;
+  color: var(--text-muted);
   flex-wrap: wrap;
   justify-content: center;
+  opacity: 0.75;
 }
 
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.legend-item svg {
-  width: 18px;
-  height: 18px;
-}
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.legend-item svg { width: 16px; height: 16px; }
 
 .constraint-legend {
   font-weight: 700;
-  color: var(--indigo);
-  letter-spacing: 0.02em;
+  color: var(--indigo-soft);
 }
