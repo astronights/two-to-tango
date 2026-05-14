@@ -1,0 +1,14 @@
+{
+  "name": "Tango — Offline Puzzle",
+  "short_name": "Tango",
+  "description": "Practice the LinkedIn Tango puzzle game offline",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0c0c1e",
+  "theme_color": "#4f46e5",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
