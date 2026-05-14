@@ -287,9 +287,8 @@ const state = {
   won: false,
 };
 
-function newGame() {
+function newGame(startTimerNow = true) {
   showMessage('Generating…', false);
-  // Defer so the message renders before the CPU-heavy generation
   setTimeout(() => {
     const puzzle = generatePuzzle(state.difficulty);
     state.size = puzzle.size;
@@ -303,7 +302,13 @@ function newGame() {
     state.won = false;
     hideMessage();
     render();
-    startTimer();
+    if (startTimerNow) {
+      startTimer();
+    } else {
+      stopTimer();
+      timerSeconds = 0;
+      updateTimer();
+    }
   }, 30);
 }
 
@@ -340,12 +345,13 @@ function findErrors() {
   const cerrs = new Set();
 
   for (let r = 0; r < size; r++) {
+    if (!grid[r].every(v => v !== EMPTY)) continue;
     const sunR = grid[r].filter(v => v === SUN).length;
     const moonR = grid[r].filter(v => v === MOON).length;
     if (sunR > size / 2 || moonR > size / 2)
-      grid[r].forEach((v, c) => { if (v !== EMPTY) errs.add(`${r},${c}`); });
+      grid[r].forEach((v, c) => errs.add(`${r},${c}`));
     for (let c = 0; c <= size - 3; c++) {
-      if (grid[r][c] !== EMPTY && grid[r][c] === grid[r][c+1] && grid[r][c] === grid[r][c+2]) {
+      if (grid[r][c] === grid[r][c+1] && grid[r][c] === grid[r][c+2]) {
         errs.add(`${r},${c}`); errs.add(`${r},${c+1}`); errs.add(`${r},${c+2}`);
       }
     }
@@ -353,12 +359,13 @@ function findErrors() {
 
   for (let c = 0; c < size; c++) {
     const col = grid.map(row => row[c]);
+    if (!col.every(v => v !== EMPTY)) continue;
     const sunC = col.filter(v => v === SUN).length;
     const moonC = col.filter(v => v === MOON).length;
     if (sunC > size / 2 || moonC > size / 2)
-      col.forEach((v, r) => { if (v !== EMPTY) errs.add(`${r},${c}`); });
+      col.forEach((v, r) => errs.add(`${r},${c}`));
     for (let r = 0; r <= size - 3; r++) {
-      if (col[r] !== EMPTY && col[r] === col[r+1] && col[r] === col[r+2]) {
+      if (col[r] === col[r+1] && col[r] === col[r+2]) {
         errs.add(`${r},${c}`); errs.add(`${r+1},${c}`); errs.add(`${r+2},${c}`);
       }
     }
@@ -500,7 +507,7 @@ function init() {
   window.addEventListener('resize', render);
 
   renderHistory();
-  newGame();
+  newGame(false);
 }
 
 document.addEventListener('DOMContentLoaded', init);
