@@ -5,6 +5,6 @@
   <!-- Divider -->
   <line x1="256" y1="160" x2="256" y2="352" stroke="#475569" stroke-width="4"/>
   <!-- Moon (right): full circle carved by background circle to form crescent -->
-  <circle cx="380" cy="256" r="76" fill="#94a3b8"/>
+  <circle cx="380" cy="256" r="76" fill="#60a5fa"/>
   <circle cx="413" cy="238" r="68" fill="#0f172a"/>
 </svg>

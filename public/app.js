@@ -290,6 +290,7 @@ function newGame(startTimerNow = true) {
     state.errors = new Set();
     state.constraintErrors = new Set();
     state.won = false;
+    document.getElementById('grid-container').classList.remove('hidden');
     hideMessage();
     render();
     if (startTimerNow) {
@@ -383,7 +384,7 @@ const SUN_SVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" ari
 </svg>`;
 
 const MOON_SVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Moon">
-  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#94a3b8"/>
+  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#60a5fa"/>
 </svg>`;
 
 // ── Render ─────────────────────────────────────────────────────────────────
@@ -487,7 +488,6 @@ function init() {
   window.addEventListener('resize', render);
 
   renderHistory();
-  newGame(false);
 }
 
 document.addEventListener('DOMContentLoaded', init);

@@ -203,6 +203,8 @@ h1 {
 #message.success { background: var(--ok-bg);   color: var(--ok-fg); }
 
 /* ── Grid ────────────────────────────────────────────────────────────────── */
+#grid-container.hidden { display: none; }
+
 #grid { display: grid; }
 
 .cell {
