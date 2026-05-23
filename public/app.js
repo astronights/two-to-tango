@@ -472,7 +472,6 @@ function init() {
       state.difficulty = btn.dataset.diff;
       document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      newGame();
     });
   });
 
