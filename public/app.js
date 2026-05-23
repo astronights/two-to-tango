@@ -230,17 +230,7 @@ function renderHistory() {
 // ── Theme ──────────────────────────────────────────────────────────────────
 
 const SUN_ICON = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="12" cy="12" r="4" fill="currentColor"/>
-  <g stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
-    <line x1="12" y1="3"    x2="12" y2="5.5"/>
-    <line x1="12" y1="18.5" x2="12" y2="21"/>
-    <line x1="3"  y1="12"   x2="5.5" y2="12"/>
-    <line x1="18.5" y1="12" x2="21" y2="12"/>
-    <line x1="5.64" y1="5.64"   x2="7.4" y2="7.4"/>
-    <line x1="16.6" y1="16.6"   x2="18.36" y2="18.36"/>
-    <line x1="5.64" y1="18.36"  x2="7.4"   y2="16.6"/>
-    <line x1="16.6" y1="7.4"    x2="18.36" y2="5.64"/>
-  </g>
+  <circle cx="12" cy="12" r="7" fill="currentColor"/>
 </svg>`;
 
 const MOON_ICON = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -389,17 +379,7 @@ function findErrors() {
 // ── SVG Icons ──────────────────────────────────────────────────────────────
 
 const SUN_SVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Sun">
-  <circle cx="12" cy="12" r="4.5" fill="#FBBF24"/>
-  <g stroke="#FBBF24" stroke-width="2" stroke-linecap="round">
-    <line x1="12" y1="2"    x2="12" y2="5"/>
-    <line x1="12" y1="19"   x2="12" y2="22"/>
-    <line x1="2"  y1="12"   x2="5"  y2="12"/>
-    <line x1="19" y1="12"   x2="22" y2="12"/>
-    <line x1="4.93" y1="4.93"   x2="7.05" y2="7.05"/>
-    <line x1="16.95" y1="16.95" x2="19.07" y2="19.07"/>
-    <line x1="4.93"  y1="19.07" x2="7.05"  y2="16.95"/>
-    <line x1="16.95" y1="7.05"  x2="19.07" y2="4.93"/>
-  </g>
+  <circle cx="12" cy="12" r="8" fill="#FBBF24"/>
 </svg>`;
 
 const MOON_SVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Moon">
