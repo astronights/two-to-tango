@@ -185,7 +185,14 @@ h1 {
   color: var(--timer-color);
   font-variant-numeric: tabular-nums;
   font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-  transition: color 0.2s;
+  transition: color 0.2s, font-size 0.2s;
+  text-align: center;
+}
+
+#timer.solved {
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 /* ── Message ─────────────────────────────────────────────────────────────── */

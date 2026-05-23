@@ -181,6 +181,7 @@ let timerSeconds = 0;
 function startTimer() {
   clearInterval(timerInterval);
   timerSeconds = 0;
+  document.getElementById('timer').classList.remove('solved');
   updateTimer();
   timerInterval = setInterval(() => { timerSeconds++; updateTimer(); }, 1000);
 }
@@ -194,6 +195,19 @@ function updateTimer() {
   const m = Math.floor(timerSeconds / 60);
   const s = timerSeconds % 60;
   document.getElementById('timer').textContent = `${m}:${s.toString().padStart(2, '0')}`;
+}
+
+function showSolvedTimer(seconds) {
+  const el = document.getElementById('timer');
+  el.textContent = `Solved in ${formatTime(seconds)}`;
+  el.classList.add('solved');
+}
+
+function resetTimer() {
+  timerSeconds = 0;
+  const el = document.getElementById('timer');
+  el.textContent = '0:00';
+  el.classList.remove('solved');
 }
 
 // ── Solve History ──────────────────────────────────────────────────────────
@@ -294,8 +308,7 @@ function newGame(startTimerNow = true) {
       startTimer();
     } else {
       stopTimer();
-      timerSeconds = 0;
-      updateTimer();
+      resetTimer();
     }
   }, 30);
 }
@@ -316,7 +329,7 @@ function validateAndRender() {
     saveToHistory(state.difficulty, timerSeconds);
     render();
     renderHistory();
-    setTimeout(() => showMessage(`Solved in ${formatTime(timerSeconds)}!`, true), 80);
+    setTimeout(() => showSolvedTimer(timerSeconds), 80);
   }
 }
 
