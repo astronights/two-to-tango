@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="110" fill="#1c1c44"/>
+  <rect width="512" height="512" rx="110" fill="#0f172a"/>
   <!-- Sun (left) -->
   <circle cx="160" cy="256" r="52" fill="#FBBF24"/>
   <g stroke="#FBBF24" stroke-width="16" stroke-linecap="round">
@@ -13,8 +13,8 @@
     <line x1="209.6" y1="206.4" x2="226.6" y2="189.4"/>
   </g>
   <!-- Divider -->
-  <line x1="256" y1="160" x2="256" y2="352" stroke="#3730a3" stroke-width="4"/>
+  <line x1="256" y1="160" x2="256" y2="352" stroke="#475569" stroke-width="4"/>
   <!-- Moon (right): full circle carved by background circle to form crescent -->
-  <circle cx="380" cy="256" r="76" fill="#A78BFA"/>
-  <circle cx="413" cy="238" r="68" fill="#1c1c44"/>
+  <circle cx="380" cy="256" r="76" fill="#94a3b8"/>
+  <circle cx="413" cy="238" r="68" fill="#0f172a"/>
 </svg>
