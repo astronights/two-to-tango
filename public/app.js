@@ -229,12 +229,9 @@ function renderHistory() {
 
 // ── Theme ──────────────────────────────────────────────────────────────────
 
-const SUN_ICON = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="12" cy="12" r="7" fill="currentColor"/>
-</svg>`;
-
-const MOON_ICON = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+const THEME_ICON = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"/>
+  <path d="M12 3v18a9 9 0 0 0 0-18z" fill="currentColor"/>
 </svg>`;
 
 function isDarkMode() {
@@ -245,8 +242,8 @@ function isDarkMode() {
 
 function applyTheme() {
   const dark = isDarkMode();
-  document.getElementById('theme-btn').innerHTML = dark ? SUN_ICON : MOON_ICON;
-  document.getElementById('theme-color-meta').content = dark ? '#0d0d1f' : '#f7f8ff';
+  document.getElementById('theme-btn').innerHTML = THEME_ICON;
+  document.getElementById('theme-color-meta').content = dark ? '#0f172a' : '#f8fafc';
 }
 
 function toggleTheme() {
